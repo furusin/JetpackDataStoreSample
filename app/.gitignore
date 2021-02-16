@@ -5,3 +5,5 @@ build/
 # Intellij
 *.iml
 .idea/*
+
+app/build/*
