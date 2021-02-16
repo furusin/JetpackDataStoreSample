@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.*
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.core.MutablePreferences
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -42,12 +46,12 @@ class MainActivity : AppCompatActivity() {
         }
 
     private suspend fun saveName() {
-        dataStore.edit { prefernces: MutablePreferences ->
-            prefernces[PreferencesKeys.KEY_NAME] = "furusin"
+        dataStore.edit { preferences: MutablePreferences ->
+            preferences[PreferencesKeys.KEY_NAME] = "furusin"
         }
     }
 
     private object PreferencesKeys {
-        val KEY_NAME = preferencesKey<String>("KEY_NAME")
+        val KEY_NAME = stringPreferencesKey("KEY_NAME")
     }
 }
